@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFOI 2026 - Salon Africain des Orateurs d'Impact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        header { background: linear-gradient(135deg, #F7931E 0%, #FF0000 50%, #4CAF50 100%); color: white; padding: 3rem 0; text-align: center; }
+        .logo-text { font-size: 4rem; font-weight: bold; color: #333; background: white; display: inline-block; padding: 10px 30px; border-radius: 15px; margin-bottom: 1rem; }
+        .edition-badge { background: #FF0000; color: white; display: inline-block; padding: 8px 20px; border-radius: 20px; font-size: 1.1rem; margin: 1rem 0; }
+        .theme-principal { font-size: 1.8rem; font-weight: bold; margin: 2rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.2); border-radius: 15px; }
+        .cta-button { background: white; color: #F7931E; padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.2rem; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 1rem; transition: all 0.3s; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        
+        nav { background: #333; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+        nav a { color: white; text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 5px; transition: all 0.3s; }
+        nav a:hover { background: #F7931E; }
+        
+        section { padding: 4rem 0; }
+        .gray-bg { background: #f8f9fa; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #333; position: relative; padding-bottom: 1rem; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: linear-gradient(90deg, #F7931E, #FF0000, #4CAF50); }
+        .highlight { color: #F7931E; }
+        
+        .bilan-stats {display: grid;grid-template-columns: repeat(3, 1fr);gap: 2rem;margin: 3rem 0;}
+        .stat-card { background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-10px); }
+        .stat-number { font-size: 3rem; font-weight: bold; color: #F7931E; }
+        .stat-label { font-size: 1.1rem; color: #666; }
+        
+        .context-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .context-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #F7931E; transition: transform 0.3s; }
+        .context-card:hover { transform: translateY(-5px); }
+        .card-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .context-card h3 { color: #F7931E; margin-bottom: 1rem; font-size: 1.5rem; }
+        
+        .vision-values {display: grid;grid-template-columns: repeat(5, 1fr);gap: 1.5rem;margin: 3rem 0;}
+        .value-card { color: white; padding: 2rem; border-radius: 15px; text-align: center; transition: transform 0.3s; }
+        .value-card:hover { transform: scale(1.05); }
+        .value-icon { font-size: 3rem; margin-bottom: 1rem; }
+        
+        .theme-central { background: linear-gradient(135deg, #F7931E, #4CAF50); color: white; padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 3rem; }
+        .day-header { background: linear-gradient(135deg, #333, #555); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; text-align: center; }
+        .program-timeline { display: grid; gap: 1.5rem; }
+        .program-item { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); display: flex; gap: 1.5rem; border-left: 5px solid #4CAF50; transition: transform 0.3s; }
+        .program-item:hover { transform: translateX(10px); }
+        .time { background: #4CAF50; color: white; padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: bold; min-width: 140px; text-align: center; flex-shrink: 0; }
+        
+        .morning { border-left-color: #FFB84D; }
+        .morning .time { background: #FFB84D; }
+        .afternoon { border-left-color: #4CAF50; }
+        .afternoon .time { background: #4CAF50; }
+        .evening { border-left-color: #9C27B0; }
+        .evening .time { background: #9C27B0; }
+        .break { border-left-color: #FF6B6B; }
+        .break .time { background: #FF6B6B; }
+        .highlight-item { background: linear-gradient(135deg, #fff8e1, #ffffff); border-left: 5px solid #F7931E; }
+        .highlight-item .time { background: #F7931E; }
+        
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .detail-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s; }
+        .detail-card:hover { transform: translateY(-10px); }
+        .detail-card i { font-size: 3rem; color: #F7931E; margin-bottom: 1rem; }
+        .highlight-card { border: 3px solid #F7931E; background: linear-gradient(135deg, #fff8e1, #ffffff); }
+        
+        .registration-section { background: linear-gradient(135deg, #F7931E 0%, #FF0000 50%, #4CAF50 100%); color: white; }
+        .form-container { max-width: 700px; margin: 0 auto; background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #F7931E; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .submit-btn { background: #4CAF50; color: white; padding: 1.2rem 2rem; border: none; border-radius: 10px; font-size: 1.2rem; font-weight: bold; cursor: pointer; width: 100%; transition: all 0.3s; }
+        .submit-btn:hover { background: #45a049; transform: translateY(-2px); }
+        
+        footer { background: #333; color: white; padding: 3rem 0 1rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: #F7931E; margin-bottom: 1rem; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-links a { color: white; font-size: 1.5rem; transition: color 0.3s; }
+        .social-links a:hover { color: #F7931E; }
+        .footer-bottom { border-top: 1px solid #555; padding-top: 2rem; text-align: center; }
+        
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
+        .modal-content { background-color: white; margin: 5% auto; padding: 3rem; border-radius: 20px; width: 90%; max-width: 600px; text-align: center; position: relative; }
+        .close { position: absolute; right: 1.5rem; top: 1rem; color: #aaa; font-size: 2rem; font-weight: bold; cursor: pointer; }
+        .close:hover { color: #000; }
+        .modal-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .modal-content h2 { color: #F7931E; margin-bottom: 1rem; }
+        .modal-content ul { text-align: left; margin: 1.5rem 0; }
+        .close-modal-btn { background: #F7931E; color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-size: 1.1rem; cursor: pointer; margin-top: 1rem; }
+        
+       /* Responsive Design Amélioré */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .logo-text {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header */
+    .logo-text {
+        font-size: 2.5rem;
+        padding: 8px 20px;
+    }
+    
+    header img {
+        max-width: 90% !important;
+    }
+    
+    .edition-badge {
+        font-size: 1rem;
+        padding: 6px 15px;
+    }
+    
+    .theme-principal {
+        font-size: 1.3rem;
+        padding: 1rem;
+    }
+    
+    .event-info {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        font-size: 1rem;
+        padding: 12px 25px;
+        width: 90%;
+        margin: 1rem auto;
+    }
+    
+    /* Navigation */
+    nav {
+        padding: 0.5rem 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    nav li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav a {
+        display: block;
+        padding: 0.8rem;
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    /* Sections */
+    section {
+        padding: 2rem 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* Grilles */
+    .context-grid,
+    .vision-values,
+    .bilan-stats,
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .card-icon,
+    .value-icon {
+        font-size: 2.5rem;
+    }
+    
+    /* Stats */
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+    }
+    
+    /* Programme */
+    .day-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .day-header p {
+        font-size: 1rem;
+    }
+    
+    .program-item {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .time {
+        width: 100%;
+        min-width: auto;
+        margin-bottom: 0.5rem;
+    }
+    
+    .content h4 {
+        font-size: 1.1rem;
+    }
+    
+    .content p {
+        font-size: 0.95rem;
+    }
+    
+    /* Formulaires */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+    }
+    
+    .form-group label {
+        font-size: 0.95rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+    
+    .submit-btn {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    /* Modal */
+    .modal-content {
+        margin: 15% 5%;
+        padding: 2rem 1.5rem;
+        width: 90%;
+    }
+    
+    .modal-icon {
+        font-size: 3rem;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-content p {
+        font-size: 0.95rem;
+    }
+    
+    .close {
+        font-size: 1.5rem;
+        right: 1rem;
+        top: 0.5rem;
+    }
+    
+    .close-modal-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    /* Galerie photos */
+    .context-grid div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Très petits écrans (smartphones) */
+    header {
+        padding: 2rem 0;
+    }
+    
+    header img {
+        max-width: 95% !important;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .theme-principal {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .card-icon,
+    .value-icon {
+        font-size: 2rem;
+    }
+    
+    .detail-card i {
+        font-size: 2.5rem;
+    }
+    
+    .day-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    h4 {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        width: 95%;
+        font-size: 0.95rem;
+        padding: 10px 20px;
+    }
+    
+    .form-container {
+        padding: 1rem;
+    }
+}
+
+/* Landscape mode pour mobiles */
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        padding: 1rem 0;
+    }
+    
+    header img {
+        max-width: 300px !important;
+    }
+    
+    .theme-principal {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+    
+    section {
+        padding: 1rem 0;
+    }
+}
+
+/* Tablettes en mode paysage */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .context-grid,
+    .vision-values {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .bilan-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Amélioration général pour mobile */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Scroll smooth sur mobile */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Empêcher le zoom sur les inputs (iOS) */
+input, select, textarea {
+    font-size: 16px !important;
+}
+
+/* Boutons tactiles plus grands */
+@media (max-width: 768px) {
+    button, .cta-button, .submit-btn {
+        min-height: 48px;
+        touch-action: manipulation;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#bilan2025">Bilan 2025</a></li>
+                <li><a href="#contexte">Contexte</a></li>
+                <li><a href="#valeurs">Valeurs</a></li>
+                <li><a href="#programme2026">Programme 2026</a></li>
+                <li><a href="#details">Détails</a></li>
+                <li><a href="#registration">Inscription</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <img src="./images/safoi-logo.jpg" alt="SAFOI Logo" 
+                     style="max-width: 700px; width: 100%; height: auto; display: block; margin: 0 auto;">
+            </div>
+            <div class="edition-badge">Édition 2 - 2026</div>
+            <div class="theme-principal">
+                <span style="color: #4CAF50;">"Jeunesse, Action et Influence :</span><br>
+                Parler pour convaincre, agir pour impacter."
+            </div>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">📅 24 - 25 Avril 2026</p>
+            <p style="font-size: 1.2rem;">📍 Palm Club Hôtel - Abidjan</p>
+            <a href="#registration" class="cta-button"><i class="fas fa-ticket-alt"></i> S'INSCRIRE GRATUITEMENT</a>
+        </div>
+    </header>
+
+    <section id="accueil">
+        <div class="container">
+            <h2 class="section-title">Bienvenue au <span class="highlight">SAFOI 2026</span></h2>
+            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 3rem; color: #666;">
+                Le plus grand salon africain dédié à l'art oratoire revient pour sa 2ème édition !
+            </p>
+            <div class="context-grid">
+                <div class="context-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Notre Mission</h3>
+                    <p>Organiser le plus grand salon africain dédié à l'art oratoire, favoriser la rencontre intergénérationnelle et renforcer les compétences.</p>
+                </div>
+                <div class="context-card">
+                    <div class="card-icon">🌟</div>
+                    <h3>Notre Vision</h3>
+                    <p>Offrir aux jeunes Africains un espace unique pour libérer leur parole, affirmer leur potentiel et bâtir des connexions stratégiques.</p>
+                </div>
+                <div class="context-card">
+                    <div class="card-icon">💡</div>
+                    <h3>Un Mouvement Panafricain</h3>
+                    <p>Le SAFOI se positionne comme un mouvement panafricain d'éveil et de transformation de la jeunesse à travers le pouvoir de la parole.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bilan2025" class="gray-bg">
+        <div class="container">
+            <h2 class="section-title">Bilan <span class="highlight">SAFOI 2025</span></h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">
+                📅 Première édition : <strong>Samedi 23 Août 2025</strong><br>
+                📍 Université Félix Houphouët-Boigny
+            </p>
+            <div class="bilan-stats">
+                <div class="stat-card"><div class="stat-number">300+</div><div class="stat-label">Participants</div></div>
+                <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">Panels</div></div>
+                <div class="stat-card"><div class="stat-number">1</div><div class="stat-label">Masterclass</div></div>
+                <div class="stat-card"><div class="stat-number">7</div><div class="stat-label">Speakers</div></div>
+                <div class="stat-card"><div class="stat-number">1</div><div class="stat-label">Finale Nationale</div></div>
+                <div class="stat-card"><div class="stat-number">17+</div><div class="stat-label">Partenaires</div></div>
+            </div>
+            <div style="background: white; padding: 2rem; border-radius: 15px; margin-top: 3rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="text-align: center; color: #F7931E; font-size: 1.8rem; margin-bottom: 1.5rem;">🎉 Un Succès Retentissant !</h3>
+                <p style="text-align: center; font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">La première édition a marqué les esprits avec plus de <strong>300 participants</strong> venus découvrir l'art oratoire comme levier de transformation.</p>
+                
+                <!-- Galerie photos -->
+                <h4 style="text-align: center; color: #F7931E; margin: 2rem 0 1.5rem;">📷 Retour en images sur le SAFOI 2025</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 1rem; margin-top: 2rem;">
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi1.jpg" alt="SAFOI 2025 - Photo 1" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi2.jpg" alt="SAFOI 2025 - Photo 2" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi3.jpg" alt="SAFOI 2025 - Photo 3" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi4.jpg" alt="SAFOI 2025 - Photo 4" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div> 
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi5.jpg" alt="SAFOI 2025 - Photo 5" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi6.jpg" alt="SAFOI 2025 - Photo 6" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi7.jpg" alt="SAFOI 2025 - Photo 7" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi8.jpg" alt="SAFOI 2025 - Photo 8" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi9.jpg" alt="SAFOI 2025 - Photo 9" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi10.jpg" alt="SAFOI 2025 - Photo 10" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi11.jpg" alt="SAFOI 2025 - Photo 11" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi12.jpg" alt="SAFOI 2025 - Photo 12" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi13.jpg" alt="SAFOI 2025 - Photo 13" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi14.jpg" alt="SAFOI 2025 - Photo 14" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi15.jpg" alt="SAFOI 2025 - Photo 15" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi21.jpg" alt="SAFOI 2025 - Photo 21" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi22.jpg" alt="SAFOI 2025 - Photo 22" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi23.jpg" alt="SAFOI 2025 - Photo 23" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi24.jpg" alt="SAFOI 2025 - Photo 24" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/safoi25.jpg" alt="SAFOI 2025 - Photo 25" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+            </div>
+        </div>
+    </section>
+    <section id="contexte">
+        <div class="container">
+            <h2 class="section-title">Contexte & <span class="highlight">Problématique</span></h2>
+            <div class="context-grid">
+                <div class="context-card">
+                    <h3>🎯 Le Défi</h3>
+                    <p>Les jeunes Ivoiriens manquent de compétences oratoires. <strong>1/3 des jeunes africains</strong> n'ont pas les compétences de base requises par le marché du travail.</p>
+                </div>
+                <div class="context-card">
+                    <h3>😰 La Peur</h3>
+                    <p>La peur de parler en public touche jusqu'à <strong>75% de la population mondiale</strong>, freinant leur évolution professionnelle.</p>
+                </div>
+                <div class="context-card">
+                    <h3>🌍 Le Manque</h3>
+                    <p>Il n'existe pas encore un cadre africain dédié exclusivement à l'art oratoire, rassemblant experts, passionnés et jeunes talents.</p>
+                </div>
+            </div>
+            <div style="background: linear-gradient(135deg, #F7931E, #4CAF50); color: white; padding: 2rem; border-radius: 15px; text-align: center; margin-top: 2rem;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">💪 La Solution : SAFOI</h3>
+                <p style="font-size: 1.1rem;">Le SAFOI crée un espace de formation, d'inspiration et de connexion autour du pouvoir transformateur de la parole.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="valeurs" class="gray-bg">
+        <div class="container">
+            <h2 class="section-title">Nos <span class="highlight">Valeurs</span></h2>
+            <div class="vision-values">
+                <div class="value-card" style="background: linear-gradient(135deg, #FF6B35, #F7931E);">
+                    <div class="value-icon">⭐</div>
+                    <h3>EXCELLENCE</h3>
+                    <p>Environnement d'exigence et de qualité pour tirer vers le haut les standards du leadership oratoire.</p>
+                </div>
+                <div class="value-card" style="background: linear-gradient(135deg, #F7931E, #FFB84D);">
+                    <div class="value-icon">🔥</div>
+                    <h3>INSPIRATION</h3>
+                    <p>Source d'élan et de motivation, mettant en lumière des parcours capables de réveiller l'ambition.</p>
+                </div>
+                <div class="value-card" style="background: linear-gradient(135deg, #4CAF50, #66BB6A);">
+                    <div class="value-icon">📚</div>
+                    <h3>PARTAGE</h3>
+                    <p>Espace riche en savoirs pour permettre aux participants de grandir personnellement et professionnellement.</p>
+                </div>
+                <div class="value-card" style="background: linear-gradient(135deg, #2196F3, #42A5F5);">
+                    <div class="value-icon">🤝</div>
+                    <h3>RÉSEAUTAGE</h3>
+                    <p>Créer des ponts entre générations, disciplines et horizons.</p>
+                </div>
+                <div class="value-card" style="background: linear-gradient(135deg, #9C27B0, #BA68C8);">
+                    <div class="value-icon">🌍</div>
+                    <h3>IMPACT DURABLE</h3>
+                    <p>Moteur de transformation sociale, bâtissant une nouvelle génération de leaders audacieux.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programme2026">
+        <div class="container">
+            <h2 class="section-title">Programme <span class="highlight">SAFOI 2026</span></h2>
+            <div class="theme-central">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">🎯 Thème Principal</h3>
+                <p style="font-size: 1.3rem;">"Jeunesse, Action et Influence : Parler pour convaincre, agir pour impacter."</p>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <div class="day-header" style="background: linear-gradient(135deg, #F7931E, #FF6B35);">
+                    <h3 style="font-size: 2rem;">📅 JOUR 1 - Vendredi 24 Avril 2026</h3>
+                    <p style="font-size: 1.2rem;">Journée d'ouverture : "Influence & Leadership"</p>
+                </div>
+                <div class="program-timeline">
+                    <h4 style="color: #FFB84D; font-size: 1.5rem; margin: 1.5rem 0;">☀️ MATINÉE</h4>
+                    <div class="program-item morning">
+                        <div class="time">08h00 - 09h30</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🚪 Accueil et installation</h4><p style="color: #666;">Accueil des participants au Palm Club Hôtel</p></div>
+                    </div>
+                    <div class="program-item morning">
+                        <div class="time">09h30 - 10h15</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🎤 Allocutions Officielles</h4><p style="color: #666;">Lancement officiel du SAFOI 2026</p></div>
+                    </div>
+                    <div class="program-item morning highlight-item">
+                        <div class="time">10h15 - 12h00</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">👥 PANEL 1</h4><p style="color: #666;"><strong>Thème :</strong> "Jeunesse, action et influence : parler pour diriger, agir pour impacter."</p></div>
+                    </div>
+                    <div class="program-item break">
+                        <div class="time">12h00 - 14h00</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🍽️ Networking</h4><p style="color: #666;">Visite des stands & échanges</p></div>
+                    </div>
+                    <h4 style="color: #4CAF50; font-size: 1.5rem; margin: 1.5rem 0;">🌤️ APRÈS-MIDI</h4>
+                    <div class="program-item afternoon highlight-item">
+                        <div class="time">14h00 - 15h45</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">👥 PANEL 2</h4><p style="color: #666;"><strong>Thème :</strong> "De la prise de parole à la prise de pouvoir."</p></div>
+                    </div>
+                    <div class="program-item afternoon">
+                        <div class="time">16h00 - 17h00</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🎓 Ateliers simultanés</h4><p style="color: #666;">Atelier 1 : Influence & Prise de parole | Atelier 2 : Leadership & Pitch</p></div>
+                    </div>
+                    <div class="program-item evening">
+                        <div class="time">17h00</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🎊 Clôture Jour 1</h4><p style="color: #666;">Cocktail et photos</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="day-header" style="background: linear-gradient(135deg, #4CAF50, #66BB6A);">
+                    <h3 style="font-size: 2rem;">📅 JOUR 2 - Samedi 25 Avril 2026</h3>
+                    <p style="font-size: 1.2rem;">Journée d'excellence : "Action & Impact"</p>
+                </div>
+                <div class="program-timeline">
+                    <h4 style="color: #FFB84D; font-size: 1.5rem; margin: 1.5rem 0;">☀️ MATINÉE</h4>
+                    <div class="program-item morning">
+                        <div class="time">08h00 - 09h30</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🚪 Accueil</h4><p style="color: #666;">Arrivée des participants - Jour 2</p></div>
+                    </div>
+                    <div class="program-item morning">
+                        <div class="time">09h30 - 10h00</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">📢 Récap Jour 1</h4><p style="color: #666;">Résumé des moments forts</p></div>
+                    </div>
+                    <div class="program-item morning highlight-item">
+                        <div class="time">10h15 - 11h30</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">👥 PANEL 3</h4><p style="color: #666;"><strong>Thème :</strong> "Influence pratique : médias et digital pour transformer."</p></div>
+                    </div>
+                    <div class="program-item morning">
+                        <div class="time">11h45 - 12h45</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🎤 Keynote 1</h4><p style="color: #666;">Intervention d'un speaker de renom</p></div>
+                    </div>
+                    <h4 style="color: #4CAF50; font-size: 1.5rem; margin: 1.5rem 0;">🌤️ APRÈS-MIDI</h4>
+                    <div class="program-item break">
+                        <div class="time">13h00 - 14h00</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🍽️ Networking Final</h4><p style="color: #666;">Dernières opportunités d'échange</p></div>
+                    </div>
+                    <div class="program-item afternoon highlight-item">
+                        <div class="time">14h30 - 16h00</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🏆 CONCOURS D'ÉLOQUENCE</h4><p style="color: #666;"><strong>FINALE SAFOI 2</strong> - Prix et distinctions!</p></div>
+                    </div>
+                    <div class="program-item afternoon">
+                        <div class="time">16h00 - 16h45</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🎤 Keynote 2</h4><p style="color: #666;">Intervention de clôture</p></div>
+                    </div>
+                    <div class="program-item evening">
+                        <div class="time">16h45 - 17h15</div>
+                        <div><h4 style="margin-bottom: 0.5rem;">🎊 Clôture Officielle</h4><p style="color: #666;">Remise des prix, cocktail et photos</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="details" class="gray-bg">
+        <div class="container">
+            <h2 class="section-title">Détails de l'<span class="highlight">Événement</span></h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Dates</h3>
+                    <p><strong>24 - 25 Avril 2026</strong></p>
+                    <p>Vendredi & Samedi</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Lieu</h3>
+                    <p><strong>Palm Club Hôtel</strong></p>
+                    <p>Abidjan, Côte d'Ivoire</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Public</h3>
+                    <p><strong>1000 participants</strong></p>
+                    <p>Étudiants, Entrepreneurs, Professionnels</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-video"></i>
+                    <h3>Diffusion</h3>
+                    <p><strong>En direct en ligne</strong></p>
+                    <p>Participation de la diaspora</p>
+                </div>
+                <div class="detail-card highlight-card">
+                    <i class="fas fa-gift"></i>
+                    <h3>Entrée</h3>
+                    <p style="font-size: 2rem; font-weight: bold; color: #F7931E;">GRATUITE</p>
+                    <p>Pour tous !</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Concours</h3>
+                    <p><strong>Prix & Distinctions</strong></p>
+                    <p>Récompenses pour les lauréats</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="registration" class="registration-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Inscription <span>GRATUITE</span></h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: white;">
+                🎉 Inscrivez-vous dès maintenant pour le SAFOI 2026 !<br>
+                <span style="font-size: 1rem; opacity: 0.9;">Places illimitées • Entrée 100% gratuite</span>
+            </p>
+            
+            <div style="text-align: center; padding: 4rem 2rem; background: white; border-radius: 20px; max-width: 600px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <div style="font-size: 4rem; margin-bottom: 2rem;">📝</div>
+                <h3 style="color: #F7931E; margin-bottom: 1rem; font-size: 1.8rem;">Formulaire d'inscription</h3>
+                <p style="color: #666; margin-bottom: 2rem;">Cliquez sur le bouton ci-dessous pour remplir votre formulaire d'inscription</p>
+                
+                <a href="https://tally.so/r/J9RKMJ" 
+                   target="_blank"
+                   style="background: #F7931E; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; display: inline-block; font-weight: bold; font-size: 1.2rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(247, 147, 30, 0.4);"
+                   onmouseover="this.style.background='#E67E00'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(247, 147, 30, 0.6)';"
+                   onmouseout="this.style.background='#F7931E'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(247, 147, 30, 0.4)';">
+                    <i class="fas fa-edit"></i> REMPLIR LE FORMULAIRE
+                </a>
+                
+                <p style="color: #999; margin-top: 1.5rem; font-size: 0.9rem;">
+                    <i class="fas fa-external-link-alt"></i> S'ouvre dans une nouvelle fenêtre
+                </p>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem; color: white; font-size: 0.9rem;">
+                <i class="fas fa-shield-alt"></i> Vos données sont sécurisées et confidentielles
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SAFOI 2026</h3>
+                    <p><strong>Édition 2</strong></p>
+                    <p>📅 24 - 25 Avril 2026</p>
+                    <p>📍 Palm Club Hôtel, Abidjan</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> safoi.ed2025@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +225 05 06 88 8312</p>
+                    <p><i class="fas fa-phone"></i> +225 07 59 178 676</p>
+                    <p><i class="fas fa-phone"></i> +225 07 78 787 047</p>
+                    <p style="margin-top: 1rem;"><strong>Président :</strong> Siendou OUATTARA</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        
+                        <a href="https://www.facebook.com/share/15cKbk7WGnn/" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    
+                        <a href="https://www.tiktok.com/@safoi07?_r=1&_t=ZS-94RprMmH75z" target="_blank">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    
+                        <a href="https://whatsapp.com/channel/0029Vb64PTy2UPBHteDMdF0m" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SAFOI - Tous droits réservés</p>
+                <p>Un événement dédié à la jeunesse africaine 🌍</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('successModal')">&times;</span>
+            <div class="modal-icon">✅</div>
+            <h2>Inscription Réussie !</h2>
+            <p>Merci <span id="userName"></span> !</p>
+            <p>Vous recevrez un email à <strong id="userEmail"></strong> avec :</p>
+            <ul>
+                <li>✅ Le programme détaillé des 2 jours</li>
+                <li>✅ Votre QR code d'accès personnalisé</li>
+                <li>✅ Le lien du groupe WhatsApp</li>
+                <li>✅ Les informations pratiques</li>
+            </ul>
+            <p><strong>RDV les 24-25 avril 2026 !</strong></p>
+            <button class="close-modal-btn" onclick="closeModal('successModal')">Fermer</button>
+        </div>
+    </div>
+
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('feedbackModal')">&times;</span>
+            <div class="modal-icon">🙏</div>
+            <h2>Merci !</h2>
+            <p>Votre témoignage est précieux pour améliorer le SAFOI.</p>
+            <button class="close-modal-btn" onclick="closeModal('feedbackModal')">Fermer</button>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Registration
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            document.getElementById('userName').textContent = data.prenoms;
+            document.getElementById('userEmail').textContent = data.email;
+            document.getElementById('successModal').style.display = 'block';
+            
+            // Ici vous pouvez envoyer les données vers un service backend
+            // Par exemple : fetch('https://formspree.io/f/YOUR_ID', { method: 'POST', body: formData })
+            
+            console.log('Inscription:', data);
+            e.target.reset();
+        });
+
+        // Feedback
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            document.getElementById('feedbackModal').style.display = 'block';
+            
+            // Ici vous pouvez envoyer les données vers un service backend
+            console.log('Feedback:', data);
+            e.target.reset();
+        });
+
+        // Close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Active nav on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.background = '#F7931E';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
