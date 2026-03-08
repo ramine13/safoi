@@ -161,6 +161,47 @@
         width: 90%;
         margin: 0 auto;
     }
+    .nav-container{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    }
+
+    /* bouton menu */
+    .menu-toggle{
+    font-size:28px;
+    color:white;
+    cursor:pointer;
+    display:none;
+    }
+
+    /* menu mobile */
+    @media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    #nav-menu{
+        position:absolute;
+        top:60px;
+        right:0;
+        background:#333;
+        width:230px;
+        flex-direction:column;
+        display:none;
+        padding:1rem;
+    }
+
+    #nav-menu li{
+        margin:5px 0;
+    }
+
+    #nav-menu.active{
+        display:flex;
+    }
+
+    }
     
     /* Sections */
     section {
@@ -414,8 +455,13 @@ input, select, textarea {
 <body>
 
     <nav>
-        <div class="container">
-            <ul>
+        <div class="container nav-container">
+    
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+    
+            <ul id="nav-menu">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#bilan2025">Bilan 2025</a></li>
                 <li><a href="#contexte">Contexte</a></li>
@@ -424,6 +470,7 @@ input, select, textarea {
                 <li><a href="#details">Détails</a></li>
                 <li><a href="#registration">Inscription</a></li>
             </ul>
+    
         </div>
     </nav>
 
@@ -899,6 +946,11 @@ input, select, textarea {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
             }
+        }
+
+        function toggleMenu(){
+            const menu = document.getElementById("nav-menu");
+            menu.classList.toggle("active");
         }
 
         // Active nav on scroll
